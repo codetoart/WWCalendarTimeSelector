@@ -35,82 +35,88 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         "Date Range Selection"//15
     ]
     
+    fileprivate var timePicker : WWCalendarTimeSelector?
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selector = UIStoryboard(name: "WWCalendarTimeSelector", bundle: nil).instantiateInitialViewController() as! WWCalendarTimeSelector
-        selector.delegate = self
-        selector.optionCurrentDate = singleDate
-        selector.optionCurrentDates = Set(multipleDates)
-        selector.optionCurrentDateRange.setStartDate(multipleDates.first ?? singleDate)
-        selector.optionCurrentDateRange.setEndDate(multipleDates.last ?? singleDate)
+        timePicker = WWCalendarTimeSelector()
+        timePicker = WWCalendarTimeSelector.instantiate()
+        self.present(timePicker!, animated: true, completion: nil)
+
+//        let selector = UIStoryboard(name: "WWCalendarTimeSelector", bundle: nil).instantiateInitialViewController() as! WWCalendarTimeSelector
+//        selector.delegate = self
+//        selector.optionCurrentDate = singleDate
+//        selector.optionCurrentDates = Set(multipleDates)
+//        selector.optionCurrentDateRange.setStartDate(multipleDates.first ?? singleDate)
+//        selector.optionCurrentDateRange.setEndDate(multipleDates.last ?? singleDate)
+//
+//        switch (indexPath as NSIndexPath).row {
+//
+//        case 0:
+//            selector.optionStyles.showDateMonth(true)
+//            selector.optionStyles.showMonth(false)
+//            selector.optionStyles.showYear(false)
+//            selector.optionStyles.showTime(false)
+//        case 1:
+//            selector.optionStyles.showDateMonth(false)
+//            selector.optionStyles.showMonth(true)
+//            selector.optionStyles.showYear(false)
+//            selector.optionStyles.showTime(false)
+//        case 2:
+//            selector.optionStyles.showDateMonth(false)
+//            selector.optionStyles.showMonth(false)
+//            selector.optionStyles.showYear(true)
+//            selector.optionStyles.showTime(false)
+//        case 3:
+//            selector.optionStyles.showDateMonth(false)
+//            selector.optionStyles.showMonth(false)
+//            selector.optionStyles.showYear(false)
+//            selector.optionStyles.showTime(true)
+//        case 4:
+//            selector.optionStyles.showDateMonth(true)
+//            selector.optionStyles.showMonth(false)
+//            selector.optionStyles.showYear(true)
+//            selector.optionStyles.showTime(false)
+//        case 5:
+//            selector.optionStyles.showDateMonth(false)
+//            selector.optionStyles.showMonth(true)
+//            selector.optionStyles.showYear(true)
+//            selector.optionStyles.showTime(false)
+//        case 6:
+//            selector.optionStyles.showDateMonth(false)
+//            selector.optionStyles.showMonth(false)
+//            selector.optionStyles.showYear(true)
+//            selector.optionStyles.showTime(true)
+//        case 7:
+//            selector.optionStyles.showDateMonth(true)
+//            selector.optionStyles.showMonth(false)
+//            selector.optionStyles.showYear(false)
+//            selector.optionStyles.showTime(true)
+//        case 8:
+//            break
+//        case 9:
+//            selector.optionStyles.showMonth(true)
+//        case 10:
+//            selector.optionSelectionType = WWCalendarTimeSelectorSelection.multiple
+//            selector.optionMultipleSelectionGrouping = .simple
+//        case 11:
+//            selector.optionSelectionType = WWCalendarTimeSelectorSelection.multiple
+//            selector.optionMultipleSelectionGrouping = .pill
+//        case 12:
+//            selector.optionSelectionType = WWCalendarTimeSelectorSelection.multiple
+//            selector.optionMultipleSelectionGrouping = .linkedBalls
+//        case 13:
+//            selector.optionShowTopPanel = false
+//        case 14:
+//            selector.optionShowTopContainer = false
+//            selector.optionLayoutHeight = 300
+//        case 15:
+//            selector.optionSelectionType = WWCalendarTimeSelectorSelection.range
+//
+//        default:
+//            break
+//        }
         
-        switch (indexPath as NSIndexPath).row {
-            
-        case 0:
-            selector.optionStyles.showDateMonth(true)
-            selector.optionStyles.showMonth(false)
-            selector.optionStyles.showYear(false)
-            selector.optionStyles.showTime(false)
-        case 1:
-            selector.optionStyles.showDateMonth(false)
-            selector.optionStyles.showMonth(true)
-            selector.optionStyles.showYear(false)
-            selector.optionStyles.showTime(false)
-        case 2:
-            selector.optionStyles.showDateMonth(false)
-            selector.optionStyles.showMonth(false)
-            selector.optionStyles.showYear(true)
-            selector.optionStyles.showTime(false)
-        case 3:
-            selector.optionStyles.showDateMonth(false)
-            selector.optionStyles.showMonth(false)
-            selector.optionStyles.showYear(false)
-            selector.optionStyles.showTime(true)
-        case 4:
-            selector.optionStyles.showDateMonth(true)
-            selector.optionStyles.showMonth(false)
-            selector.optionStyles.showYear(true)
-            selector.optionStyles.showTime(false)
-        case 5:
-            selector.optionStyles.showDateMonth(false)
-            selector.optionStyles.showMonth(true)
-            selector.optionStyles.showYear(true)
-            selector.optionStyles.showTime(false)
-        case 6:
-            selector.optionStyles.showDateMonth(false)
-            selector.optionStyles.showMonth(false)
-            selector.optionStyles.showYear(true)
-            selector.optionStyles.showTime(true)
-        case 7:
-            selector.optionStyles.showDateMonth(true)
-            selector.optionStyles.showMonth(false)
-            selector.optionStyles.showYear(false)
-            selector.optionStyles.showTime(true)
-        case 8:
-            break
-        case 9:
-            selector.optionStyles.showMonth(true)
-        case 10:
-            selector.optionSelectionType = WWCalendarTimeSelectorSelection.multiple
-            selector.optionMultipleSelectionGrouping = .simple
-        case 11:
-            selector.optionSelectionType = WWCalendarTimeSelectorSelection.multiple
-            selector.optionMultipleSelectionGrouping = .pill
-        case 12:
-            selector.optionSelectionType = WWCalendarTimeSelectorSelection.multiple
-            selector.optionMultipleSelectionGrouping = .linkedBalls
-        case 13:
-            selector.optionShowTopPanel = false
-        case 14:
-            selector.optionShowTopContainer = false
-            selector.optionLayoutHeight = 300
-        case 15:
-            selector.optionSelectionType = WWCalendarTimeSelectorSelection.range
-            
-        default:
-            break
-        }
-        
-        present(selector, animated: true, completion: nil)
+//        present(selector, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
