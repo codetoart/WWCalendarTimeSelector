@@ -324,7 +324,7 @@ open class WWCalendarTimeSelector: UIViewController, UITableViewDelegate, UITabl
     ///
     /// - Note:
     /// Defaults to current date and time, with time rounded off to the nearest hour.
-    open var optionCurrentDate = Date().minute < 30 ? Date().beginningOfHour : Date().beginningOfHour + 1.hour
+    open var optionCurrentDate = Date()//Date().minute < 30 ? Date().beginningOfHour : Date().beginningOfHour + 1.hour
     
     /// Set the default dates when selector is presented.
     ///
