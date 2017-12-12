@@ -239,6 +239,10 @@ import UIKit
     ///     - selector: The selector that is checking for selectablity of date.
     ///     - date: The date that user tapped, but have not yet given feedback to determine if should be selected.
     @objc optional func WWCalendarTimeSelectorShouldSelectDate(_ selector: WWCalendarTimeSelector, date: Date) -> Bool
+    
+    @objc optional func WWCalendarWillDismissOnCancel(_ selector: WWCalendarTimeSelector)
+    
+    @objc optional func WWCalendarDidDismissOnCancel (_ selector: WWCalendarTimeSelector)
 }
 
 open class WWCalendarTimeSelector: UIViewController, UITableViewDelegate, UITableViewDataSource, WWCalendarRowProtocol, WWClockProtocol {
@@ -870,9 +874,9 @@ open class WWCalendarTimeSelector: UIViewController, UITableViewDelegate, UITabl
         else {
             del?.WWCalendarTimeSelectorCancel?(picker, dates: multipleDates)
         }
-        del?.WWCalendarTimeSelectorWillDismiss?(picker)
+        del?.WWCalendarWillDismissOnCancel?(picker)
         dismiss(animated: true) {
-            del?.WWCalendarTimeSelectorDidDismiss?(picker)
+            del?.WWCalendarDidDismissOnCancel?(picker)
         }
     }
     
